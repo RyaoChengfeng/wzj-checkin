@@ -41,6 +41,7 @@ func getLogger() *zap.SugaredLogger {
 		allCore = append(allCore, zapcore.NewCore(consoleEncoder, consoleWriter, zapcore.DebugLevel))
 		allCore = append(allCore, zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel))
 	} else {
+		allCore = append(allCore, zapcore.NewCore(consoleEncoder, consoleWriter, zapcore.InfoLevel))
 		allCore = append(allCore, zapcore.NewCore(encoder, writeSyncer, zapcore.InfoLevel))
 	}
 	core := zapcore.NewTee(allCore...)

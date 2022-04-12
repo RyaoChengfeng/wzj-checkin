@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: wzj-checkin:latest
+    environment:
+      - TZ=Asia/Shanghai
+      - ENV=prod
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./logs:/logs
+      - ./env:/env
+    container_name: wzj-checkin

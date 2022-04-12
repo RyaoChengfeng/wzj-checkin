@@ -3,7 +3,7 @@ package config
 const (
 	APIPrefix = "/api"
 
-	TimerEveryTwentySecond = "@every 20s"
+	TimerEveryTwentySecond = "@every 30s"
 
 	URLWechatAccessToken = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s"
 	URLWZJSignIn         = "https://v18.teachermate.cn/wechat/wechat/guide/signin?openid=%s"

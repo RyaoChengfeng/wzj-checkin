@@ -15,7 +15,7 @@ func init() {
 		configFile = v + ".yml"
 	}
 
-	data, err := ioutil.ReadFile(fmt.Sprintf("../env/%s", configFile))
+	data, err := ioutil.ReadFile(fmt.Sprintf("env/%s", configFile))
 
 	if err != nil {
 		panic(err)

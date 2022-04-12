@@ -9,14 +9,15 @@ import (
 
 func StartCron() {
 	c := cron.New()
-	err := c.AddFunc(config.TimerEveryTwentySecond, checkInTask)
+	Logger.Info("start checkInTask, cron: " + config.TimerEveryTwentySecond)
+	err := c.AddFunc(config.TimerEveryTwentySecond, CheckInTask)
 	if err != nil {
 		Logger.Error("cron add func error:", err)
 	}
 	c.Start()
 }
 
-func checkInTask() {
+func CheckInTask() {
 	lon, _ := strconv.ParseFloat(config.C.CheckIn.Lon, 64)
 	lat, _ := strconv.ParseFloat(config.C.CheckIn.Lat, 64)
 	coordinate := Coordinate{
@@ -28,7 +29,7 @@ func checkInTask() {
 		if err != nil {
 			Logger.Info("check in success, error in not nil: ", err)
 		}
-		Logger.Info("check in success")
+		Logger.Info("check status active")
 	} else {
 		Logger.Info("check in fail, error: ", err)
 	}

@@ -1,10 +1,12 @@
 checkin:
-  openid: ""
-  lon: ""
-  lat: ""
+  # checkin_url: if you want to use a different url for checkin
+  checkin_url: "https://v18.teachermate.cn/wechat-pro-ssr/student/sign?openid=ed0e510f5f18262ac7815fd5a64ebda7"
+  openid: "08e4ebc2c9db923cb8071c977cae5b34" # your openid
+  lon: "114.407462"
+  lat: "30.508775"
 logConf:
   log_path: "logs"
   log_file: "checkin.log"
 
 proxy: ""
-debug: true
+debug: false

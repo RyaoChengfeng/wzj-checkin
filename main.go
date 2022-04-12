@@ -1,7 +1,14 @@
 package main
 
-import "github.com/RyaoChengfeng/wzj-checkin/util"
+import (
+	"github.com/RyaoChengfeng/wzj-checkin/util"
+	"sync"
+)
 
 func main() {
-	util.StartCron()
+	go util.StartCron()
+	//util.CheckInTask()
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Wait()
 }

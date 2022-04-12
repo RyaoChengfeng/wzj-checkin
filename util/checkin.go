@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/RyaoChengfeng/wzj-checkin/config"
+	. "github.com/RyaoChengfeng/wzj-checkin/util/log"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
@@ -41,11 +42,31 @@ var nameMap = map[string]string{
 func UserCheckIn(textOpenid string, coordinate Coordinate) (bool, error) {
 	client := &http.Client{}
 
+	if config.C.CheckIn.CheckInUrl != "" { // if exist, use the url in config
+		res, err := http.Get(fmt.Sprintf(config.C.CheckIn.CheckInUrl))
+		if err != nil {
+			return false, err
+		}
+		body, _ := ioutil.ReadAll(res.Body)
+		Logger.Debug(string(body))
+		defer res.Body.Close()
+		if res.StatusCode != 200 {
+			if res.StatusCode == 401 {
+				return false, errors.New("openid is not valid")
+			}
+			return false, errors.New("request wrong")
+		} else {
+			return true, nil
+		}
+	}
+
 	// Request the HTML page.
 	res, err := http.Get(fmt.Sprintf(config.URLWZJSignIn, textOpenid))
 	if err != nil {
 		return false, err
 	}
+	body, _ := ioutil.ReadAll(res.Body)
+	Logger.Debug(string(body))
 	defer res.Body.Close()
 	if res.StatusCode != 200 {
 		return false, errors.New("request wrong")
@@ -97,9 +118,14 @@ func UserCheckIn(textOpenid string, coordinate Coordinate) (bool, error) {
 		if err != nil {
 			return false, err
 		}
+		body, _ := ioutil.ReadAll(res.Body)
+		Logger.Debug(string(body))
 		defer res.Body.Close()
 		if res.StatusCode == 200 {
 			return true, nil
+		}
+		if res.StatusCode == 401 {
+			return false, errors.New("openid is not valid")
 		}
 	}
 	return false, err

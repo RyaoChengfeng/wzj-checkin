@@ -1,0 +1,10 @@
+checkin:
+  openid: ""
+  lon: ""
+  lat: ""
+logConf:
+  log_path: "logs"
+  log_file: "checkin.log"
+
+proxy: ""
+debug: true

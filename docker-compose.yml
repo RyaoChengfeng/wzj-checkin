@@ -5,7 +5,7 @@ services:
     image: wzj-checkin:latest
     environment:
       - TZ=Asia/Shanghai
-      - ENV=prod
+      - ENV=config
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./logs:/logs

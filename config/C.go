@@ -12,10 +12,10 @@ type Config struct {
 }
 
 type checkin struct {
-	CheckInUrl string `yaml:"checkin_url"`
-	OpenID     string `yaml:"openid"`
-	Lon        string `yaml:"lon"`
-	Lat        string `yaml:"lat"`
+	CheckInUrl string  `yaml:"checkin_url"`
+	OpenID     string  `yaml:"openid"`
+	Lon        float64 `yaml:"lon"`
+	Lat        float64 `yaml:"lat"`
 }
 
 type logConf struct {

@@ -1,17 +1,17 @@
-API已经不可用，我没有找到一个新的可用的开源脚本，我也没有精力维护这玩意。
- 
- ~~## 微助教自动签到~~
+## 微助教自动签到（堂堂复活）
 
-~~1、configure `env/config.yml`~~
+1、configure `env/config.yml`
 
-~~2、Start~~
+2、Start
 
-~~- **Just use `go run main.go` to run it**~~
+- **Just use `go run main.go` to run it**
 
-~~- **start in docker**~~
+- **start in docker**
 
   You can create a docker image with `docker build -t wzj-checkin .`
 
   Use `docker-compose up` to start via docker
 
-> API有一堆问题，但我目前懒得管，建议每次直接配置checkin_url让它一直跑着吧（**
+> 没想到大四还要用上这玩意，微助教好像只有华科在用
+> 
+> 需要注意的是，openId会玄学失效，建议在签到前获取openId并配置，然后手动run一下，用于对付使用二维码和地理位置的课程

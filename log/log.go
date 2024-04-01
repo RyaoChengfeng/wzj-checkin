@@ -1,22 +1,16 @@
 package log
 
 import (
+	"os"
+	"path"
+	"time"
+
 	"github.com/RyaoChengfeng/wzj-checkin/config"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
-	"os"
-	"path"
-	"time"
 )
 
-// Logger is a global variable
-//  import . "github.com/casbin/casnode/util"
-//  Logger.Info("msg")
-//  Logger.Debug("msg")
-//  Logger.Warn("msg")
-//  Logger.Error("msg")
-//  Logger.Fatal("msg")
 var Logger *zap.SugaredLogger
 
 func init() {

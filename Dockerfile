@@ -1,4 +1,4 @@
-FROM golang:1.18.0 AS builder
+FROM golang:1.22.0 AS builder
 COPY . /src
 WORKDIR /src
 ENV GOPROXY="https://goproxy.io" GO111MODULE=on

@@ -1,10 +1,10 @@
 checkin:
-  openid: "08e4ebc2c9db923cb8071c977cae5b34" # your openid
-  lon: 114.407462
-  lat: 30.508775
+  openid: "177bdbcc06c81e75ee40529c61e93f1b" # your openid
+  lon: 114.413702
+  lat: 30.514882
 logConf:
   log_path: "logs"
   log_file: "checkin.log"
 
 proxy: ""
-debug: false
+debug: true

@@ -8,8 +8,8 @@ import (
 
 func StartCron() {
 	c := cron.New()
-	Logger.Info("start checkInTask, cron: " + config.TimerEveryTwentySecond)
-	err := c.AddFunc(config.TimerEveryTwentySecond, cronCheckIn)
+	Logger.Info("start checkInTask, cron: " + config.Timer)
+	err := c.AddFunc(config.Timer, cronCheckIn)
 	if err != nil {
 		Logger.Error("cron add func error:", err)
 	}
@@ -21,12 +21,13 @@ func cronCheckIn() {
 }
 
 func CheckInTask(openId string, lon float64, lat float64) {
+	Logger.Infof("try check in...")
 	coordinate := Coordinate{
 		Lon: lon,
 		Lat: lat,
 	}
 	err := UserCheckIn(openId, coordinate)
 	if err != nil {
-		Logger.Info("check in success, error in not nil: ", err)
+		Logger.Info("check in error: ", err)
 	}
 }

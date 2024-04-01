@@ -28,8 +28,8 @@ type CheckIn struct {
 }
 
 type SignIn struct {
-	SignRank    int `json:"signRank"`
-	StudentRank int `json:"studentRank"`
+	SignRank    *int `json:"signRank"`
+	StudentRank *int `json:"studentRank"`
 }
 
 type Coordinate struct {
@@ -52,6 +52,7 @@ func UserCheckIn(openId string, coordinate Coordinate) error {
 		Logger.Errorf("WzjSignActive error: %v", err)
 		return err
 	}
+	Logger.Debugf("WzjSignActive res:%v", string(body))
 	var signActive []SignActive
 	err = json.Unmarshal(body, &signActive)
 	if err != nil {
@@ -69,6 +70,8 @@ func UserCheckIn(openId string, coordinate Coordinate) error {
 			coordinate.Lat += float64(rand.Intn(40)-20) * 0.000001
 			headers["lon"] = strconv.FormatFloat(coordinate.Lon, 'f', 5, 64)
 			headers["lat"] = strconv.FormatFloat(coordinate.Lat, 'f', 5, 64)
+		} else if signCode.IsQR != 0 {
+			// TODO QRCode
 		}
 
 		body, err := HttpPost(config.WzjSignIn, headers, payload)
@@ -76,13 +79,18 @@ func UserCheckIn(openId string, coordinate Coordinate) error {
 			Logger.Errorf("WzjSignIn error: %v", err)
 			return err
 		}
+		Logger.Debugf("WzjSignIn res:%v", string(body))
 		var signIn SignIn
 		err = json.Unmarshal(body, &signIn)
 		if err != nil {
 			Logger.Errorf("json Unmarshal error: %v", err)
 			return err
 		}
-		Logger.Infof("CheckIn success. SignRank:%v, StudentRank:%v", signIn.SignRank, signIn.StudentRank)
+		if signIn.SignRank != nil && signIn.StudentRank != nil {
+			Logger.Infof("CheckIn success. SignRank:%v, StudentRank:%v", *signIn.SignRank, *signIn.StudentRank)
+		} else {
+			Logger.Infof("CheckIn failed. %v", string(body))
+		}
 	}
 	return nil
 }

@@ -1,10 +1,10 @@
 package config
 
 const (
-	APIPrefix              = "/api"
-	TimerEveryTwentySecond = "@every 30s"
-	WzjSignActive          = "https://v18.teachermate.cn/wechat-api/v1/class-attendance/student/active_signs"
-	WzjSignIn              = "https://v18.teachermate.cn/wechat-api/v1/class-attendance/student-sign-in"
+	APIPrefix     = "/api"
+	Timer         = "@every 10s"
+	WzjSignActive = "https://v18.teachermate.cn/wechat-api/v1/class-attendance/student/active_signs"
+	WzjSignIn     = "https://v18.teachermate.cn/wechat-api/v1/class-attendance/student-sign-in"
 )
 
 //GET /wechat-api/v1/class-attendance/student/active_signs HTTP/1.1
